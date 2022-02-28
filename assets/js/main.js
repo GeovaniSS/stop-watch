@@ -17,7 +17,7 @@ function stopWatcher() {
         if (el.classList.contains('start')) {
             clearInterval(timer)
             stopWatch.classList.remove('time-stop')
-            startTimer(seconds)
+            startTimer()
         }
     
         /* Botão Stop
@@ -33,12 +33,12 @@ function stopWatcher() {
             - Redefine os segundos como 0 
             - Atualiza o cronômetro para o momento inicial (00:00:00)
             - Remove a classe time-stop ao cronômetro (Cor preta do texto)
-            - Para o cronômetro
+            - Para o cronômetro.
         */  
         if (el.classList.contains('end')) {
             seconds = 0;
             stopWatch.classList.remove('time-stop')
-            stopWatch.innerHTML = setTimer(seconds)
+            stopWatch.innerHTML = setTimer()
             clearInterval(timer)
         }
     })
@@ -47,10 +47,10 @@ function stopWatcher() {
         - Incrementa os segundos a cada segundo da função setInterval()
         - Atualiza o cronomêtro a cada 1 segundo
     */
-    const startTimer = (seconds) => {
+    const startTimer = () => {
         timer = setInterval(() => {
             seconds++
-            stopWatch.innerHTML = setTimer(seconds)
+            stopWatch.innerHTML = setTimer()
         }, 1000)
     }
     
@@ -59,7 +59,7 @@ function stopWatcher() {
         - A variável seconds é utilizada para aumentar a hora de segundos em segundos
         - Retorna a porção hora formatada para o idioma brasileiro
     */
-    const setTimer = (seconds) => {
+    const setTimer = () => {
         const data = new Date()
         data.setHours(0, 0, seconds)
         return data.toLocaleTimeString('pt-BR', {timeStyle:"medium"})
